@@ -16,6 +16,6 @@ Sentiment-Product-Mention/sourcecode <br />
 ├── Scripts-Athena-create-table/&nbsp;&nbsp;&nbsp;_# Scripts to set up Athena tables_ <br />
 ├── Scripts-DEMO/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Demo scripts showcasing pipeline usage_ <br />
 ├── Scripts-on-GLUE/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# AWS Glue scripts for data processing_ <br />
-├── layers-on-lambda/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Lambda layer configurations_ <br />
+├── layers-on-lambda/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Lambda layer configurations_ <br />
 ├── model/                         # Pre-trained models and related assets <br />
 └── visualization/                 # Notebooks and scripts for data visualization <br />      
