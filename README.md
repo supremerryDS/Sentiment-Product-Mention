@@ -44,4 +44,4 @@ sourcecode <br />
 ## 🚀 Getting Started
 - Prerequisites:
   - AWS account with access to Lambda, Glue, Cloudformation and Athena services.
-  - Python 3.x and PySpark installed locally.
+  - Python 3.x and PySpark installed locally. (If run on local)
