@@ -19,3 +19,15 @@ sourcecode <br />
 ├── layers-on-lambda/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Lambda layer configurations_ <br />
 ├── model/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Pre-trained models and related assets_ <br />
 └── visualization/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Notebooks and scripts for data visualization_ <br />      
+
+## ⚙️ Technologies Used
+- Programming Language: Python, PySpark
+- Cloud Services:
+  - AWS Lambda: Serverless compute service for running code in response to events.
+  - AWS Glue: Managed ETL service for data preparation.
+  - AWS Athena: Interactive query service for analyzing data in Amazon S3 using standard SQL.
+  - AWS Cloudformation: Created Stack for model: Sentiment-api.
+  - AWS S3: Data Storage
+- NLP Libraries:
+  - NLTK
+  - sklearn: TfidfVectorizer, cosine_similarity
