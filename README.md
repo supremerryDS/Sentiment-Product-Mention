@@ -15,7 +15,7 @@ This project aims to analyze customer feedback by identifying product mentions a
 Sentiment-Product-Mention/sourcecode <br />
 ├── Scripts-Athena-create-table/&nbsp;&nbsp;&nbsp;_# Scripts to set up Athena tables_ <br />
 ├── Scripts-DEMO/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Demo scripts showcasing pipeline usage_ <br />
-├── Scripts-on-GLUE/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# AWS Glue scripts for data processing_ <br />
+├── Scripts-on-GLUE/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# AWS Glue scripts for data processing_ <br />
 ├── layers-on-lambda/              # Lambda layer configurations <br />
 ├── model/                         # Pre-trained models and related assets <br />
 └── visualization/                 # Notebooks and scripts for data visualization <br />      
