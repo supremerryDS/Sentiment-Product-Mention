@@ -12,11 +12,11 @@ This project aims to analyze customer feedback by identifying product mentions a
 - Visualization: Provides visual insights into product sentiments over time.
 
 ## 🗂️ Project Structure
-Sentiment-Product-Mention/sourcecode
-├── Scripts-Athena-create-table/   # Scripts to set up Athena tables
-├── Scripts-DEMO/                  # Demo scripts showcasing pipeline usage
-├── Scripts-on-GLUE/               # AWS Glue scripts for data processing
-├── layers-on-lambda/              # Lambda layer configurations
-├── model/                         # Pre-trained models and related assets
-├── visualization/                 # Notebooks and scripts for data visualization
+Sentiment-Product-Mention/sourcecode \n
+├── Scripts-Athena-create-table/   # Scripts to set up Athena tables \n
+├── Scripts-DEMO/                  # Demo scripts showcasing pipeline usage \n
+├── Scripts-on-GLUE/               # AWS Glue scripts for data processing \n
+├── layers-on-lambda/              # Lambda layer configurations \n
+├── model/                         # Pre-trained models and related assets \n
+├── visualization/                 # Notebooks and scripts for data visualization \n
 └── README.md        
