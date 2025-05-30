@@ -26,8 +26,14 @@ sourcecode <br />
   - AWS Lambda: Serverless compute service for running code in response to events.
   - AWS Glue: Managed ETL service for data preparation.
   - AWS Athena: Interactive query service for analyzing data in Amazon S3 using standard SQL.
+  - AWS SNS: Alerted by email when an AWS Glue job fails.
   - AWS Cloudformation: Created Stack for model: Sentiment-api.
   - AWS S3: Data Storage
 - NLP Libraries:
   - NLTK
   - sklearn: TfidfVectorizer, cosine_similarity
+ 
+## 🚀 Getting Started
+- Prerequisites:
+  - AWS account with access to Lambda, Glue, Cloudformation and Athena services.
+  - Python 3.x and PySpark installed locally.
