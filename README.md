@@ -1,6 +1,7 @@
 # Sentiment-Product-Mention
 - DEMO Clip: https://drive.google.com/file/d/1TiPA4Ov3RPyOh2vnV_919d8axnshclsg/view?usp=sharing </br>
 An end-to-end pipeline for detecting sentiment and product mentions in business feedback, leveraging AWS services and NLP techniques to transform raw customer feedback into actionable insights.
+- Presentation: https://drive.google.com/file/d/1MJKDw67lg_3Z0RKKHY81Qm5Vgab4r5aH/view?usp=sharing
 ## 📌 Overview
 This project aims to analyze customer feedback by identifying product mentions and determining the associated sentiment. By integrating various AWS services, the pipeline ensures scalability, efficiency, and real-time processing capabilities.
 
