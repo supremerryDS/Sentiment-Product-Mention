@@ -20,10 +20,10 @@ sourcecode <br />
 ├── model/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Pre-trained models and related assets_ <br />
 └── visualization/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_# Notebooks and scripts for data visualization using PowerBI_ <br />    
 
-![Pipeline Overview](pipeline_overview/data_model.png)
+![Data Model of our Project](pipeline_overview/data_model.png)
 
 
-![Pipeline Overview](pipeline_overview/visualization.png)
+![Visualization using PowerBI](pipeline_overview/visualization.png)
 
 
 ## ⚙️ Technologies Used
