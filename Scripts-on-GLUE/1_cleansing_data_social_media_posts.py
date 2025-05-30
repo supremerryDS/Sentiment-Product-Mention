@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark import SparkContext
 from pyspark.sql.functions import udf, col, when, lit, lower, regexp_replace, split, array_remove, trim
 from pyspark.sql.types import StringType, ArrayType
 import time
@@ -6,6 +7,10 @@ import re
 import boto3
 import os
 from urllib.parse import urlparse
+from awsglue.utils import getResolvedOptions
+from awsglue.context import GlueContext
+from awsglue.job import Job
+import sys
 
 # Initialize Spark Session
 def create_spark_session(app_name="TextCleaning", execute_platform='local'):
@@ -288,14 +293,30 @@ def main():
 
 
 if __name__ == '__main__':
+    # Initialize Glue job for AWS
+    if execute_platform == 'aws':
+        args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+        sc = SparkContext()
+        glueContext = GlueContext(sc)
+        spark = glueContext.spark_session
+        job = Job(glueContext)
+        job.init(args['JOB_NAME'], args)
+    
     sns = boto3.client('sns')
-    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:416191274488:alert-workflow-failed"
-    try :
+    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:851725315772:alert-workflow-failed"
+    
+    try:
         main()
-        job.commit()
-    except Exception as error :
-        alert_msg = f"ALERT: Workflow failed.Error is {error}"
+        if execute_platform == 'aws':
+            job.commit()
+    except Exception as error:
+        alert_msg = (
+            "ALERT -- JOB_NAME: 1_cleansing_data_social_media_posts "
+            f"-- Workflow failed. Error: {error}"
+        )
         sns.publish(
             TopicArn=SNS_TOPIC_ARN,
             Message=alert_msg
         )
+        # Do not suppress the error — let it propagate to mark the Glue job as FAILED
+        raise

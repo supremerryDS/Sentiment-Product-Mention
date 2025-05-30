@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 with Docker running sentiment-api on port 80 -> 8000
+
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: Select the default VPC from the list (usually pre-selected)
+
+Resources:
+
+  SentimentSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH, HTTP, and port 8000 access
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8000
+          ToPort: 8000
+          CidrIp: 0.0.0.0/0
+
+  SentimentInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      KeyName: vockey
+      SecurityGroupIds:
+        - !Ref SentimentSecurityGroup
+      ImageId: ami-00a929b66ed6e0de6  # Amazon Linux 2023
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 12  # Size in GB
+            VolumeType: gp3
+            DeleteOnTermination: true
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install docker -y
+          service docker start
+          usermod -a -G docker ec2-user
+          newgrp docker
+          docker pull grill112233/sentiment-api:latest
+          docker run -d -p 80:8000 --name sentiment-server grill112233/sentiment-api:latest
+
+Outputs:
+
+  SentimentEndpoint:
+    Description: Public URL to /predict
+    Value: !Sub "http://${SentimentInstance.PublicDnsName}/predict"

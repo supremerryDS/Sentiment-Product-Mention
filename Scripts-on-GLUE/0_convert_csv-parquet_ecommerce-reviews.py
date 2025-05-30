@@ -169,7 +169,7 @@ def main():
 
 if __name__ == '__main__':
     sns = boto3.client('sns')
-    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:416191274488:alert-workflow-failed"
+    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:851725315772:alert-workflow-failed"
     try :
         main()
     except Exception as error :

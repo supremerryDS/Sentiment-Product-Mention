@@ -234,9 +234,9 @@ def main():
         success = write_parquet_safely_spark(df_cleaned, execute_platform, result_path)
         
         if success:
-            print("✅ Product catalog text cleaning completed successfully!")
+            print("Product catalog text cleaning completed successfully!")
         else:
-            print("❌ Product catalog text cleaning completed but file write may have failed")
+            print("Product catalog text cleaning completed but file write may have failed")
             
     except Exception as e:
         print(f"Error in main processing: {e}")
@@ -245,13 +245,14 @@ def main():
 
 if __name__ == '__main__':
     sns = boto3.client('sns')
-    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:416191274488:alert-workflow-failed"
+    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:851725315772:alert-workflow-failed"
     try :
         main()
         job.commit()
     except Exception as error :
-        alert_msg = f"ALERT: Workflow failed.Error is {error}"
+        alert_msg = f"ALERT -- JOB_NAME: 1_cleansing_data_products -- Workflow failed.Error is {error}"
         sns.publish(
             TopicArn=SNS_TOPIC_ARN,
             Message=alert_msg
         )
+        raise

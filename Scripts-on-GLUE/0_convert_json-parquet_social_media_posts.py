@@ -220,9 +220,9 @@ def main():
         success = write_parquet_safely_spark(df_transposed, execute_platform, result_path)
         
         if success:
-            print("✅ JSON to Parquet conversion completed successfully!")
+            print("JSON to Parquet conversion completed successfully!")
         else:
-            print("❌ JSON to Parquet conversion completed but file write may have failed")
+            print("JSON to Parquet conversion completed but file write may have failed")
             
         # Show final statistics
         final_count = df_transposed.count()
@@ -235,7 +235,7 @@ def main():
 
 if __name__ == '__main__':
     sns = boto3.client('sns')
-    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:416191274488:alert-workflow-failed"
+    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:851725315772:alert-workflow-failed"
     try :
         main()
         job.commit()

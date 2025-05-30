@@ -5,7 +5,7 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
 from awsglue.dynamicframe import DynamicFrame
-import boto3
+
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -177,35 +177,38 @@ def write_parquet_safely(df, execute_platform, result_path, max_retries=5):
             bucket_name = parsed.netloc
             key = parsed.path.lstrip('/')
 
-            print("---------------------- Writing data to S3... ----------------------")
+            print("---------------------- Writing data to S3 with overwrite... ----------------------")
 
-            # Convert pandas DataFrame to Spark DataFrame then use Glue
+            # Convert pandas DataFrame to Spark DataFrame
             spark_df = spark.createDataFrame(df)
             dynamic_frame = DynamicFrame.fromDF(spark_df, glueContext, "results")
             
-            # Write using Glue
+            # Write with overwrite mode
             glueContext.write_dynamic_frame.from_options(
                 frame=dynamic_frame,
                 connection_type="s3",
-                connection_options={"path": result_path, "compression": "gzip"},
+                connection_options={
+                    "path": result_path,
+                    "compression": "gzip",
+                    "partitionKeys": [],
+                    "overwrite": True
+                },
                 format="parquet"
             )
 
-            print(f"---------------------- Saved file to S3: {result_path} ----------------------")
+            print(f"---------------------- Overwritten file to S3: {result_path} ----------------------")
 
-            # Retry to confirm existence
+            # Confirm file exists (optional retry)
             retry_count = 0
             file_exists = False
-
             while not file_exists and retry_count < max_retries:
                 file_exists = check_files_in_s3_path(bucket_name, key)
                 if file_exists:
-                    print("---------------------- File confirmed to exist in the path ----------------------")
+                    print("---------------------- File confirmed in S3 ----------------------")
                     return True
-                else:
-                    retry_count += 1
-                    print(f"Retry {retry_count}/{max_retries} - Waiting before next check...")
-                    time.sleep(15)
+                retry_count += 1
+                print(f"Retry {retry_count}/{max_retries} - Waiting before next check...")
+                time.sleep(15)
 
             if not file_exists:
                 print("---------------------- Max retries reached. File not confirmed. ----------------------")
@@ -217,20 +220,15 @@ def write_parquet_safely(df, execute_platform, result_path, max_retries=5):
 
     else:  # Local
         try:
-            print("---------------------- Writing data locally... ----------------------")
-            
-            # Convert pandas DataFrame to Spark DataFrame for consistent processing
+            print("---------------------- Writing data locally with overwrite... ----------------------")
             spark_df = spark.createDataFrame(df)
-            
-            # Write using Spark's parquet writer
             spark_df.coalesce(1).write.mode("overwrite").option("compression", "gzip").parquet(result_path)
-            
-            print(f"---------------------- Saved file locally: {result_path} ----------------------")
+            print(f"---------------------- Overwritten file locally: {result_path} ----------------------")
             return True
-
         except Exception as e:
             print(f"Failed to write locally. Error: {e}")
             return False
+
 
 def main():
     product_path, review_path, output_path = select_path(execute_platform)
@@ -305,13 +303,14 @@ def main():
 
 if __name__ == "__main__":
     sns = boto3.client('sns')
-    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:416191274488:alert-workflow-failed"
+    SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:851725315772:alert-workflow-failed"
     try :
         main()
         job.commit()
     except Exception as error :
-         alert_msg = f"ALERT: Workflow failed.Error is {error}"
+        alert_msg = f"ALERT -- JOB_NAME: 2_similarity_mapping_products-social -- Workflow failed.Error is {error}"
         sns.publish(
             TopicArn=SNS_TOPIC_ARN,
             Message=alert_msg
         )
+        raise
